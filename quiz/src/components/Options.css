@@ -14,8 +14,14 @@
     border-radius: 4px; /* Rounded corners for each option */
 }
 
+.form-check-input {
+  opacity: 0;
+  position: absolute;
+  left: -9999px; /* Move it out of the visible area */
+}
+
 .form-check-label {
-    margin-left: 12px; /* Adjusted margin */
+    margin-left: 0; /* Adjusted margin */
     color: #333; /* Dark grey color for text, ensures good visibility */
 }
 

@@ -38,7 +38,9 @@ const Score = ({ score, totalQuestions, onNextQuestion, questionBank, userAnswer
                     </ul>
                 </div>
             ))}
-            <button onClick={onNextQuestion}>Restart Quiz</button>
+			<div className="button-container">
+				<button onClick={onNextQuestion} className="button-modern">Restart Quiz</button>
+			</div>
         </div>
     );
 };

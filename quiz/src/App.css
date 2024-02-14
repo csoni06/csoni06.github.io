@@ -9,3 +9,28 @@ color: #ffffff;
 color: #ffffff;
 margin-top: 2rem;
 }
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    width: 100%; /* Ensures the div takes the full width of its parent */
+}
+
+.button-modern {
+    background-color: #4CAF50; /* Existing styles */
+    border: none;
+    color: white;
+    padding: 12px 24px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    transition: 0.3s;
+    cursor: pointer;
+    border-radius: 25px;
+}
+
+.button-modern:hover {
+    background-color: #45a049;
+}
