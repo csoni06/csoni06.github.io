@@ -6,6 +6,7 @@ import Question from "./components/Question";
 import qBank from "./components/QuestionBank";
 import Score from "./components/Score";
 import "./App.css";
+import { addScoreToFirestore } from "./firebase/firestoreOperations";
 
 const MAX_QUESTIONS = 5; // Limit the number of questions displayed
 
@@ -26,8 +27,14 @@ class App extends Component {
             answerChecked: false,
             scoredQuestions: new Set(),
             selectionLocked: false,
+			userName: '',
+			quizStarted: false,
         };
     }
+	
+	handleUserNameChange = (event) => {
+		this.setState({ userName: event.target.value });
+	};
 
     componentDidMount() {
         this.setState({ questionBank: this.shuffleArray([...qBank]).slice(0, MAX_QUESTIONS) });
@@ -49,21 +56,21 @@ class App extends Component {
     }
 
     restartQuiz = () => {
-        this.setState({
-            questionBank: this.shuffleArray([...qBank]).slice(0, MAX_QUESTIONS),
-            currentQuestion: 0,
-            selectedOption: "",
-            userAnswers: [],
-            score: 0,
-            quizEnd: false,
-            showFeedback: false,
-            lastAnswerCorrect: false,
-            correctAnswer: "",
-            answerChecked: false,
-            scoredQuestions: new Set(),
-            selectionLocked: false,
-        });
-    };
+		this.setState({
+			questionBank: this.shuffleArray([...qBank]).slice(0, MAX_QUESTIONS),
+			currentQuestion: 0,
+			selectedOption: "",
+			userAnswers: [],
+			score: 0,
+			quizEnd: false,
+			showFeedback: false,
+			lastAnswerCorrect: false,
+			correctAnswer: "",
+			answerChecked: false,
+			scoredQuestions: new Set(),
+			selectionLocked: false,
+		});
+	};
 
     handleOptionChange = (e) => {
         if (!this.state.selectionLocked) {
@@ -99,8 +106,19 @@ class App extends Component {
     };
 
     goToNextQuestion = () => {
-		const { currentQuestion, questionBank, selectedOption, scoredQuestions, userAnswers } = this.state;
+		const { currentQuestion, questionBank, selectedOption, scoredQuestions, userAnswers, score, userName } = this.state;
 		const isCorrect = selectedOption === questionBank[currentQuestion].answer;
+		
+		// Update userAnswers with the current selection
+		let updatedUserAnswers = [...userAnswers];
+		if (updatedUserAnswers.length <= currentQuestion) {
+			updatedUserAnswers.push(selectedOption);
+		} else {
+			updatedUserAnswers[currentQuestion] = selectedOption;
+		}
+
+		// Check if the current question is the last one
+		const isLastQuestion = currentQuestion + 1 >= questionBank.length;
 
 		// Only update score if the question hasn't been scored yet
 		if (isCorrect && !scoredQuestions.has(currentQuestion)) {
@@ -110,35 +128,56 @@ class App extends Component {
 			}));
 		}
 
-		// Update userAnswers with the current selection
-		let updatedUserAnswers = [...userAnswers];
-		if (updatedUserAnswers.length <= currentQuestion) {
-			updatedUserAnswers.push(selectedOption);
+		if (isLastQuestion) {
+			// If it's the last question, update the Firestore database
+			const updateScoreboardAndEndQuiz = async () => {
+				await addScoreToFirestore(userName || "Anonymous", score + (isCorrect ? 1 : 0), new Date());
+				this.setState({
+					quizEnd: true,
+					userAnswers: updatedUserAnswers,
+					answerChecked: false,
+					selectionLocked: false, // Ensure selections are unlocked for the next question
+					// No need to navigate to the next question since the quiz is ending
+				});
+			};
+			updateScoreboardAndEndQuiz();
 		} else {
-			updatedUserAnswers[currentQuestion] = selectedOption;
+			// If it's not the last question, proceed as usual
+			this.setState(prevState => ({
+				currentQuestion: prevState.currentQuestion + 1,
+				selectedOption: "",
+				showFeedback: false,
+				lastAnswerCorrect: false,
+				userAnswers: updatedUserAnswers,
+				answerChecked: false,
+				selectionLocked: false,
+			}));
 		}
-
-		// Move to the next question
-		this.setState(prevState => ({
-			currentQuestion: prevState.currentQuestion + 1 < questionBank.length ? prevState.currentQuestion + 1 : prevState.currentQuestion,
-			selectedOption: "",
-			showFeedback: false,
-			lastAnswerCorrect: false,
-			userAnswers: updatedUserAnswers,
-			quizEnd: prevState.currentQuestion + 1 >= questionBank.length,
-			answerChecked: false,
-			selectionLocked: false, // Ensure selections are unlocked for the next question
-		}));
 	};
 
     render() {
-		const { questionBank, currentQuestion, selectedOption, score, quizEnd, showFeedback, correctAnswer } = this.state;
+		const { questionBank, currentQuestion, selectedOption, score, quizEnd, showFeedback, correctAnswer, quizStarted } = this.state;
 
 		// If questionBank is not yet loaded, show a loading message or spinner
 		if (questionBank.length === 0) {
 			return <div>Loading...</div>;
 		}
-
+		
+		if (!quizStarted) {
+			return (
+				<div className="App d-flex flex-column align-items-center justify-content-center">
+					<h1 className="app-title">Enter Your Name</h1>
+					<input
+						type="text"
+						placeholder="Your Name"
+						value={this.state.userName}
+						onChange={this.handleUserNameChange}
+						className="text-input"
+					/>
+					<button className="btn btn-primary" onClick={() => this.setState({ quizStarted: true })}>Start Quiz</button>
+				</div>
+			);
+		}
 		return (
 			<div className="App d-flex flex-column align-items-center justify-content-center">
 				<h1 className="app-title">QUIZ APP</h1>

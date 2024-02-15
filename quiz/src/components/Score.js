@@ -1,9 +1,22 @@
 // Score.js
 
-import React from 'react';
+//import React from 'react';
 import '../App.css';
+import React, { useEffect, useState } from 'react';
+import { addScoreToFirestore, getTopScoresFromFirestore } from '../firebase/firestoreOperations';
 
 const Score = ({ score, totalQuestions, onNextQuestion, questionBank, userAnswers }) => {
+	const [topScores, setTopScores] = useState([]);
+
+    useEffect(() => {
+        const fetchScores = async () => {
+            const scores = await getTopScoresFromFirestore();
+            setTopScores(scores);
+        };
+
+        fetchScores();
+    }, []);
+	
     return (
         <div className="score-section">
             <h2>Your Score</h2>
@@ -38,6 +51,27 @@ const Score = ({ score, totalQuestions, onNextQuestion, questionBank, userAnswer
                     </ul>
                 </div>
             ))}
+			<h3>Top Scores</h3>
+			<table className="top-scores-table">
+			  <thead>
+				<tr>
+				  <th>Rank</th>
+				  <th>User Name</th>
+				  <th>Score</th>
+				  <th>Date</th>
+				</tr>
+			  </thead>
+			  <tbody>
+				{topScores.map((record, index) => (
+				  <tr key={index}>
+					<td>{index + 1}</td>
+					<td>{record.userName}</td>
+					<td>{record.score}</td>
+					<td>{record.date}</td>
+				  </tr>
+				))}
+			  </tbody>
+			</table>
 			<div className="button-container">
 				<button onClick={onNextQuestion} className="button-modern">Restart Quiz</button>
 			</div>

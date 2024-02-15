@@ -34,3 +34,33 @@ margin-top: 2rem;
 .button-modern:hover {
     background-color: #45a049;
 }
+
+.top-scores-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.top-scores-table th,
+.top-scores-table td {
+  text-align: left;
+  padding: 12px 16px;
+}
+
+.top-scores-table th {
+  background-color: #007bff;
+  color: white;
+}
+
+.top-scores-table tbody tr:nth-child(odd) {
+  background-color: #f2f2f2;
+  color: black; /* Ensure text color is black for visibility */
+}
+
+/* Removed the hover effect */
+.top-scores-table td {
+  border-bottom: 1px solid #ddd;
+}
