@@ -31,6 +31,12 @@ const qBank = [
 		options: ["GB Nagar", "Lucknow", "Prayagraj", "Agra"],
 		answer: "Lucknow"
 	},
+	{
+		id: 6,
+		question: "minden gyógyszer teratogén ágensnek számít, károsítja a magzatot",
+		options: ["Igaz", "Hamis"],
+		answer: "Igaz"
+	},
 ]
 
 export default qBank;

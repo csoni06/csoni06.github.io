@@ -10,6 +10,27 @@ color: #ffffff;
 margin-top: 2rem;
 }
 
+.text-input {
+    background-color: #292b2e; /* Same as the app background for a seamless look */
+    color: #ffffff; /* White text color */
+    border: 1px solid #404244; /* Subtle border for visibility */
+    outline: none; /* Remove the outline to keep the modern look */
+    padding: 10px 20px; /* Add some padding for better text visibility */
+    border-radius: 20px; /* Rounded corners */
+    margin: 10px 0; /* Optional: adds some space around the input */
+    width: 250px; /* Set a specific width */
+}
+
+.text-input::placeholder {
+    color: #ffffff; /* Light placeholder text */
+    opacity: 0.7; /* Placeholder text less prominent */
+}
+
+.text-input:focus {
+    border-color: #ffffff; /* Brighter border on focus */
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.5); /* Enhanced glow effect on focus */
+}
+
 .button-container {
     display: flex;
     justify-content: center;

@@ -79,7 +79,7 @@ class App extends Component {
     };
 
     checkAnswer = () => {
-        const { questionBank, currentQuestion, selectedOption, scoredQuestions } = this.state;
+        const { questionBank, currentQuestion, selectedOption, scoredQuestions} = this.state;
         const isCorrect = selectedOption === questionBank[currentQuestion].answer;
 
         if (isCorrect && !scoredQuestions.has(currentQuestion)) {
@@ -91,8 +91,9 @@ class App extends Component {
                 lastAnswerCorrect: isCorrect,
                 showFeedback: true,
                 correctAnswer: questionBank[currentQuestion].answer,
-                answerChecked: true,
+                //answerChecked: true,
                 selectionLocked: true,
+				answerChecked: !prevState.answerChecked
             }));
         } else {
             this.setState({
@@ -104,6 +105,7 @@ class App extends Component {
             });
         }
     };
+	
 
     goToNextQuestion = () => {
 		const { currentQuestion, questionBank, selectedOption, scoredQuestions, userAnswers, score, userName } = this.state;
@@ -189,6 +191,7 @@ class App extends Component {
 							onOptionChange={this.handleOptionChange}
 							showHint={showFeedback}
 							questionNumber={currentQuestion + 1} // Calculate questionNumber here
+							answerChecked={this.state.answerChecked}
 						/>
 						<div className="mt-2">
 							<button 

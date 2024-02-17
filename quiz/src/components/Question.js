@@ -5,7 +5,7 @@ import Options from "./Option"; // Ensure this is correct based on your file nam
 
 class Question extends Component {
     render() {
-        const { question, selectedOption, onOptionChange, onSubmit, questionNumber } = this.props;
+        const { question, selectedOption, onOptionChange, onSubmit, questionNumber, answerChecked } = this.props;
 
         return (
             <div>
@@ -18,6 +18,7 @@ class Question extends Component {
                         correctAnswer={question.answer} // Passing the correct answer to the Options component
                         onOptionChange={onOptionChange}
 						showHint={this.props.showHint}
+						answerChecked={answerChecked} // Pass this prop to Options
                     />
                 </form>
             </div>

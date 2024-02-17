@@ -30,3 +30,16 @@
     font-style: italic;
     color: #333; /* Ensure hint text is also visible */
 }
+
+.glow-effect {
+  box-shadow: 0 0 8px #5ccfd1;
+}
+
+@keyframes flash {
+  0%, 100% { box-shadow: 0 0 5px red; }
+  50% { box-shadow: 0 0 20px red; }
+}
+
+.flash-effect {
+  animation: flash 1s infinite;
+}
