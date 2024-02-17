@@ -166,17 +166,26 @@ class App extends Component {
 		}
 		
 		if (!quizStarted) {
+			const isNameTooLong = this.state.userName.length > 32; // Check if name is more than 32 characters
+
 			return (
 				<div className="App d-flex flex-column align-items-center justify-content-center">
-					<h1 className="app-title">Enter Your Name</h1>
+					<h1 className="app-title">Add meg a neved</h1>
 					<input
 						type="text"
-						placeholder="Your Name"
+						placeholder="Pl: Zsófika"
 						value={this.state.userName}
 						onChange={this.handleUserNameChange}
 						className="text-input"
+						maxLength="32" // This ensures the input itself also restricts to 32 chars
 					/>
-					<button className="btn btn-primary" onClick={() => this.setState({ quizStarted: true })}>Start Quiz</button>
+					<button 
+						className="btn btn-primary" 
+						onClick={() => this.setState({ quizStarted: true })}
+						disabled={isNameTooLong} // Disable button if name is too long
+					>
+						Quiz indítása
+					</button>
 				</div>
 			);
 		}
@@ -199,22 +208,22 @@ class App extends Component {
 								onClick={this.checkAnswer} 
 								disabled={!selectedOption || this.state.selectionLocked}
 							>
-								Check Answer
+								Válasz ellenőrzése
 							</button>
 							<button 
 								className="btn btn-primary" 
 								onClick={this.goToNextQuestion}
 								disabled={!selectedOption}
 							>
-								Next Question
+								Következő kérdés
 							</button>
 						</div>
 						{showFeedback && (
 							<div className="feedback">
 								{this.state.lastAnswerCorrect ? (
-									<p className="text-success">Correct answer!</p>
+									<p className="text-success">Helyes válasz!</p>
 								) : (
-									<p className="text-danger">Incorrect. The correct answer was: {correctAnswer}</p>
+									<p className="text-danger">Nem jó válasz. A helyes válasz: {correctAnswer}</p>
 								)}
 							</div>
 						)}

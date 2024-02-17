@@ -5,20 +5,34 @@ import Options from "./Option"; // Ensure this is correct based on your file nam
 
 class Question extends Component {
     render() {
-        const { question, selectedOption, onOptionChange, onSubmit, questionNumber, answerChecked } = this.props;
+        const { question, selectedOption, onOptionChange, questionNumber, answerChecked } = this.props;
+        const isSpecialType = question.type === "special";
+        const isHamisType = question.type === "hamis"; // Check if question type is 'hamis'
 
         return (
             <div>
-                <h3>Question {questionNumber}</h3>
+                <h3>{questionNumber}. kérdés</h3>
                 <h5 className="mt-2">{question.question}</h5>
-                <form onSubmit={onSubmit} className="mt-2 mb-2">
+                {isHamisType && <div className="mt-2">Melyik állítás helytelen a következők közül?</div>}
+                <form className="mt-2 mb-2">
+                    {isSpecialType && (
+                        // Render default options as non-selectable
+                        <Options
+                            options={question.options}
+                            selectedOption={""} // Pass an empty string to ensure no option is selectable
+                            onOptionChange={() => {}} // Override with an empty function
+                            isSelectable={false} // New prop to manage option selectability
+                        />
+                    )}
+                    {/* Render special options or default options as selectable */}
                     <Options
-                        options={question.options}
+                        options={isSpecialType ? question.specialoptions : question.options}
                         selectedOption={selectedOption}
-                        correctAnswer={question.answer} // Passing the correct answer to the Options component
                         onOptionChange={onOptionChange}
-						showHint={this.props.showHint}
-						answerChecked={answerChecked} // Pass this prop to Options
+                        isSelectable={true} // Ensure these options are selectable
+                        correctAnswer={question.answer} // Ensure to pass correctAnswer appropriately
+                        showHint={this.props.showHint}
+                        answerChecked={answerChecked}
                     />
                 </form>
             </div>
