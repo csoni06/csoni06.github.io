@@ -4,48 +4,27 @@
 const qBank = [
 	{
 		id: 1,
-		question: "What is the capital of Haryana?",
-		options: ["Yamunanagar", "Panipat", "Gurgaon", "Chandigarh"],
-		answer: "Chandigarh",
+		question: "Az életkor a születéstől a jelen pillanatig eltelt idő, mert az élettartam a születéstől a halálig tart.",
+		options: ["Az állítás igaz és az indoklás is igaz; közöttük ok-okozati összefüggés van.", "Az állítás igaz és az indoklás is igaz, de közöttük nincs ok-okozati összefüggés.", "Az állítás igaz, de az indoklás hamis.", "Az állítás hamis, de az indoklás önmagában igaz.", "Az állítás hamis és az indoklás is hamis."],
+		answer: "Az állítás igaz és az indoklás is igaz, de közöttük nincs ok-okozati összefüggés.",
 		type: "default"
 	},
 	{
 		id: 2,
-		question: "What is the capital of Punjab?",
-		options: ["Patiala", "Ludhiana", "Amritsar", "Chandigarh"],
-		answer: "Chandigarh",
+		question: "a csontok növekedését biztosítja",
+		options: ["periosteum", "epiphysis porckorong", "mindkettő", "egyik sem"],
+		answer: "mindkettő",
 		type: "default"
 	},
 	{
 		id: 3,
-		question: "What is the capital of India?",
-		options: ["Delhi", "Mumbai", "Kolkata", "Chennai"],
-		answer: "Delhi",
-		type: "default"
-	},
-	{
-		id: 4,
-		question: "What is the capital of Uttarakhad?",
-		options: ["Roorkee", "Haridwar", "Dehradun", "Nanital"],
-		answer: "Dehradun",
-		type: "default"
-	},
-	{
-		id: 5,
-		question: "What is capital of Uttar Pradesh?",
-		options: ["GB Nagar", "Lucknow", "Prayagraj", "Agra"],
-		answer: "Lucknow",
-		type: "default"
-	},
-	{
-		id: 6,
 		question: "minden gyógyszer teratogén ágensnek számít, károsítja a magzatot",
 		options: ["Igaz", "Hamis"],
 		answer: "Igaz",
 		type: "default"
 	},
 	{
-		id: 7,
+		id: 4,
 		question: "A hypophysis elülső lebenyében termelődő hormonok:",
 		options: ["oxytocin", "prolactin", "ADH", "ACTH"],
 		specialoptions: ["Az 1,2,3 -as válasz a helyes", "Az 1 és 3-as válasz a helyes.", "A 2 és 4-es válasz a helyes", "Csak a 4-es válasz a helyes", "Mindegyik válasz helyes"],
@@ -53,23 +32,23 @@ const qBank = [
 		type: "special"
 	},
 	{
-    id: 8, // Assuming the last question in your question bank has an id of 1, so adding +1
-    question: "Mikor lesz egy neurit által ellátott izom működése differenciáltabb, finomabb?",
-    options: [
-        "ha a neurit hosszú",
-        "ha a neurit vastag",
-        "ha a neurit sok ágra válik",
-        "ha a neurit rövid",
-        "ha a neurit kevés ágra válik"
-    ],
-    answer: "ha a neurit kevés ágra válik", // Left blank as per your instruction
-    type: "default"
+    id: 5,
+		question: "Mikor lesz egy neurit által ellátott izom működése differenciáltabb, finomabb?",
+		options: [
+			"ha a neurit hosszú",
+			"ha a neurit vastag",
+			"ha a neurit sok ágra válik",
+			"ha a neurit rövid",
+			"ha a neurit kevés ágra válik"
+		],
+		answer: "ha a neurit kevés ágra válik",
+		type: "default"
 	},
 	{
-		id: 9,
-		question: "Holnap milyen nap lesz?",
-		options: ["Napsütéses", "Vasárnap", "Hétfő", "18-a"],
-		answer: "Hétfő",
+		id: 6,
+		question: "A costovertebralis és costotransversalis ízület közös mozgástengelye:",
+		options: ["a borda fején és nyakán halad keresztül", "az alsó bordáknál a szagittális síkhoz közelít", "a felső bordáknál a frontális síkhoz közelít", "minden bordánál a frontális és szagittális sík között 45°-ban van"],
+		answer: "minden bordánál a frontális és szagittális sík között 45°-ban van",
 		type: "hamis"
 	},
 	
