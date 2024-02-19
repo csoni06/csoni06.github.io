@@ -8,7 +8,7 @@ import Score from "./components/Score";
 import "./App.css";
 import { addScoreToFirestore } from "./firebase/firestoreOperations";
 
-const MAX_QUESTIONS = 6; // Limit the number of questions displayed
+const MAX_QUESTIONS = 70; // Limit the number of questions displayed
 
 class App extends Component {
     constructor(props) {
