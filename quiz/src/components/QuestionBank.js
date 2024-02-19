@@ -7225,45 +7225,60 @@ const qBank = [
         "id":  552,
         "question":  "Az alábbi klasszikus svéd masszázsfogások közül melyik vált ki erős vasodilatatiót?",
         "options":  [
-
+                        "simítás",
+                        "terhelt tenyérrel végzett simítás",
+                        "dörzsölés",
+                        "intermittáló nyomás"
                     ],
-        "answer":  "",
+        "answer":  "dörzsölés",
         "type":  "default"
     },
     {
         "id":  553,
         "question":  "Az alábbi fogások közül melyik váltja ki a vénás és a nyirokáramlás fokozódását?",
         "options":  [
-
+                        "simítás",
+                        "gyúrás",
+                        "vibráció",
+                        "intermittáló nyomás"
                     ],
-        "answer":  "",
+        "answer":  "intermittáló nyomás",
         "type":  "default"
     },
     {
         "id":  554,
         "question":  "Milyen fogást alkalmazna a m. quadriceps gyengült vastus medialisán?",
         "options":  [
-
+                        "vibráció",
+                        "erőteljes gyúrás",
+                        "intermittálás",
+                        "kirázás"
                     ],
-        "answer":  "",
+        "answer":  "erőteljes gyúrás",
         "type":  "default"
     },
     {
         "id":  555,
         "question":  "Hol végzünk vibrációt az arcon?",
         "options":  [
-
+                        "a nervus facialis kilépésénél",
+                        "a szájzugban",
+                        "az orrzugban",
+                        "a szemöldök felett"
                     ],
-        "answer":  "",
+        "answer":  "a nervus facialis kilépésénél",
         "type":  "default"
     },
     {
         "id":  556,
         "question":  "A svédmasszázs hatása:",
         "options":  [
-
+                        "a vénás keringés gyorsul, a nyirokkeringés lassul",
+                        "a vénás keringés lassul, a nyirokkeringés gyorsul",
+                        "a vénás keringés lassul, a nyirokkeringés lassul",
+                        "a vénás keringés gyorsul, a nyirokkeringés gyorsul"
                     ],
-        "answer":  "",
+        "answer":  "a vénás keringés gyorsul, a nyirokkeringés gyorsul",
         "type":  "default"
     },
     {
