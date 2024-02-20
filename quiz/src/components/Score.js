@@ -28,8 +28,8 @@ const Score = ({ score, totalQuestions, onNextQuestion, questionBank, userAnswer
 
     return (
         <div className="score-section">
-            <h2>Elért eredmény</h2>
-            <p>{score} pontot szereztél {totalQuestions}-ből</p>
+            <h2 className="center-text">Elért eredmény</h2>
+			<p className="center-score">{score} pontot szereztél {totalQuestions}-ből</p>
             {questionBank.map((question, index) => {
                 const isHamis = question.type === 'hamis';
                 const isSpecial = question.type === 'special'; // Retain handling for 'special' type questions
@@ -82,7 +82,7 @@ const Score = ({ score, totalQuestions, onNextQuestion, questionBank, userAnswer
                     </div>
                 );
             })}
-            <h3>Ranglista</h3>
+            <h3 className="center-text">Ranglista</h3>
             <table className="top-scores-table">
                 <thead>
                     <tr>

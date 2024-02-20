@@ -57,9 +57,12 @@ margin-top: 2rem;
 }
 
 .top-scores-table {
-  width: 100%;
+  max-width: 96%; /* Adjust the width to be less than 100% to leave space on the sides */
+  width: auto; /* This makes the width flexible */
   border-collapse: collapse;
   margin-top: 20px;
+  margin-left: auto; /* Center the table horizontally */
+  margin-right: auto; /* Center the table horizontally */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
   overflow: hidden;
@@ -81,7 +84,41 @@ margin-top: 2rem;
   color: black; /* Ensure text color is black for visibility */
 }
 
-/* Removed the hover effect */
 .top-scores-table td {
   border-bottom: 1px solid #ddd;
+}
+
+.score-section {
+  margin-left: 10px; /* Adjust as needed */
+  margin-right: 10px; /* Adjust as needed */
+}
+
+.question-summary {
+  margin-left: 10px; /* Adjust as needed */
+  margin-right: 10px; /* Adjust as needed */
+}
+
+.center-text {
+  text-align: center;
+}
+
+.center-score {
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+  margin: 20px auto; /* Ensure it's centered by using auto margins */
+  padding: 10px;
+  display: block; /* Changed to block to respect margin auto */
+  color: #333; /* More neutral color */
+  background-color: #f0f0f0; /* Light background */
+  border: 1px solid #ddd; /* Subtle border */
+  border-radius: 5px;
+  width: fit-content; /* Adjust width to fit content */
+  max-width: 90%; /* Prevents too wide elements on larger screens */
+  box-sizing: border-box; /* Includes padding and border in the element's total width */
+}
+
+.center-score:hover {
+  transform: scale(1.1);
+  box-shadow: 0px 6px 8px rgba(0, 0, 0, 0.3);
 }
