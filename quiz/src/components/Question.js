@@ -11,9 +11,9 @@ class Question extends Component {
 
         return (
             <div>
-                <h3>{questionNumber}. kérdés</h3>
-                <h5 className="mt-2">{question.question}</h5>
-                {isHamisType && <div className="mt-2">Melyik állítás helytelen a következők közül?</div>}
+                <h3 className="center-text">{questionNumber}. kérdés</h3>
+                <h5 className="margin-lr-20">{question.question}</h5>
+                {isHamisType && <div className="margin-lr-20">Melyik állítás helytelen a következők közül?</div>}
                 <form className="mt-2 mb-2">
                     {isSpecialType && (
                         // Render default options as non-selectable

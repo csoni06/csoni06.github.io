@@ -98,6 +98,11 @@ margin-top: 2rem;
   margin-right: 10px; /* Adjust as needed */
 }
 
+.margin-lr-20 {
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
 .center-text {
   text-align: center;
 }
